@@ -7,6 +7,7 @@ import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
 import FeaturesAdmin from './FeaturesAdmin';
+import ListPosts from './ListPost';
 
 export default function Main() {
   const [posts, setPosts] = useState({});
@@ -39,6 +40,7 @@ export default function Main() {
     <>
       <Navbar />
       <FeaturesAdmin checkRoles={userRoles.permissions} />
+      <ListPosts posts={posts} />
     </>
   ) : (
     <Redirect to="/" />

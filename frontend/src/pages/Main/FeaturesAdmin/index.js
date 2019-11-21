@@ -25,8 +25,8 @@ export default function FeaturesAdmin({ checkRoles }) {
 
   return (
     <Container>
-      {createPost && <Link to="/home/criar-novo-post">Criar novo post</Link>}
-      {deleteUser && <Link to="/">Excluir usuário</Link>}
+      {createPost && <Link to="/home/create-new-post">Criar novo post</Link>}
+      {deleteUser && <Link to="/home/delete-user">Excluir usuário</Link>}
     </Container>
   );
 }
