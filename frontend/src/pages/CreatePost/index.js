@@ -1,27 +1,64 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import Dropzone from 'react-dropzone';
+import api from '../../services/api';
+
 import Navbar from '../../components/Navbar';
-import { Container, DropContainer } from './styles';
+import { Container, Form } from './styles';
 
-export default function CreatePost() {
+export default function CreatePost({ history }) {
+  const [postTitle, setPostTitle] = useState('');
+  const [postBody, setPostBody] = useState('');
+
+  const { token } = JSON.parse(localStorage.getItem('token_user'));
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const data = { title: postTitle, body: postBody };
+
+    await api.post('/posts', data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    history.push('/home');
+  }
+
   return (
     <>
       <Navbar />
       <Container>
-        <Dropzone accept="image/*" onDropAccepted={() => {}}>
-          {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-            <DropContainer
-              {...getRootProps()}
-              isDragActive={isDragActive}
-              isDragReject={isDragReject}
-            >
-              <p>teeste</p>
-              <input {...getInputProps()} />
-            </DropContainer>
-          )}
-        </Dropzone>
+        <Form onSubmit={handleSubmit}>
+          <fieldset>
+            <legend>NOVO POST</legend>
+            <label htmlFor="inputTitle">Título do post</label>
+            <input
+              type="text"
+              placeholder="Aqui vai o título"
+              id="inputTitle"
+              value={postTitle}
+              onChange={e => setPostTitle(e.target.value)}
+            />
+            <label htmlFor="textBodyPost">Escreva sua postagem</label>
+            <textarea
+              name="bodyPost"
+              id="textBodyPost"
+              cols="90"
+              rows="10"
+              value={postBody}
+              onChange={e => setPostBody(e.target.value)}
+            />
+
+            <button type="submit">Submeter</button>
+          </fieldset>
+        </Form>
       </Container>
     </>
   );
 }
+
+CreatePost.propTypes = {
+  history: PropTypes.shape().isRequired,
+};

@@ -34,6 +34,16 @@ module.exports = {
       "required": {
           "some": [ "nesting", "id" ]
       }
-    }]
+    }],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "labelComponents": [],
+        "labelAttributes": [],
+        "controlComponents": [],
+        "assert": "both",
+        "depth": 25
+      }
+    ]
   },
 };
