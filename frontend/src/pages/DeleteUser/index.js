@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { MdDelete } from 'react-icons/md';
 
-import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
 import api from '../../services/api';
@@ -17,9 +16,7 @@ export default function DeleteUser() {
 
   useEffect(() => {
     async function fetchedUsers() {
-      const { data: allUsers } = await api.get('/users', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data: allUsers } = await api.get('/users');
       setUsers(allUsers.data);
     }
 

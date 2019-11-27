@@ -17,6 +17,8 @@ export default function Login({ history }) {
 
     const response = await api.post('/sessions', dataLogin);
 
+    api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+
     if (response.status === 200) {
       localStorage.setItem('token_user', JSON.stringify(response.data));
     }

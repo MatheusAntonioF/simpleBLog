@@ -15,11 +15,11 @@ export default function Main() {
 
   const { token, user } = JSON.parse(localStorage.getItem('token_user'));
 
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
   useEffect(() => {
     async function fetchedPosts() {
-      const { data: allPosts } = await api.get('/posts', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data: allPosts } = await api.get('/posts');
       setPosts(allPosts);
     }
     fetchedPosts();

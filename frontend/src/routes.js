@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 import CreatePost from './pages/CreatePost';
 import DeleteUser from './pages/DeleteUser';
+import ShowPost from './pages/ShowPost';
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
         <Route path="/home" exact component={Main} />
         <Route path="/home/create-new-post" component={CreatePost} />
         <Route path="/home/delete-user" component={DeleteUser} />
+        <Route path="/home/post/:slug" component={ShowPost} />
       </Switch>
     </BrowserRouter>
   );

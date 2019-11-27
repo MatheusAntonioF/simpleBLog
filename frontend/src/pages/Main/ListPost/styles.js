@@ -8,6 +8,10 @@ export const Container = styled.div`
   border-radius: 5px;
   padding-top: 12px;
   padding-bottom: 12px;
+  a {
+    text-decoration: none;
+    color: #7159c1;
+  }
 `;
 
 export const Fieldset = styled.fieldset`
@@ -45,5 +49,6 @@ export const Fieldset = styled.fieldset`
     border: 0;
     outline: 0;
     transition: width 1s, background 1s;
+    cursor: pointer;
   }
 `;

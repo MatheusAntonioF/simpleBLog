@@ -12,16 +12,12 @@ export default function CreatePost({ history }) {
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
 
-  const { token } = JSON.parse(localStorage.getItem('token_user'));
-
   async function handleSubmit(e) {
     e.preventDefault();
 
     const data = { title: postTitle, body: postBody };
 
-    await api.post('/posts', data, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    await api.post('/posts', data);
 
     history.push('/home');
   }
